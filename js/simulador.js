@@ -46,7 +46,28 @@ function mostrarPanel() {
         let n=Number(document.getElementById("monto").value);
         let n2=Number(document.getElementById("tiempo").value);
         let n3=Number(document.getElementById("interes").value);
-        if(n>0,n2>0,n3>0){   
+        if(n<=0){
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Has olvidado introducir el monto",
+        });
+        }
+        else if(n2<=0){
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Has olvidado introducir el tiempo",
+            });
+            }
+        else if(n3<=0){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Has olvidado introducir el interés",
+                });
+            }
+        else{
             for(i=1;i<=n2;i++){
                 ca=n/n2;
                 d1=ca.toFixed(2);
@@ -70,14 +91,8 @@ function mostrarPanel() {
             document.getElementById("t1").innerHTML=n1;
             document.getElementById("t2").innerHTML=d4;
             document.getElementById("t3").innerHTML=d5;        
-        }else{
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Has olvidado introducir algún dato",
-            });
-    }
-        }       
+        }
+    }      
 
 
 
