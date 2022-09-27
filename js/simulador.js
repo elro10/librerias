@@ -1,4 +1,3 @@
-
 let boton = document.getElementById("boton");
     boton.addEventListener("click",genTable);
     
@@ -21,19 +20,29 @@ color.addEventListener("change",(e)=>{
     
     function manejadorFormularioUsuario(e) {
     e.preventDefault();
-    nombreUsuario = document.getElementById("user").value;
-    localStorage.setItem("userName",nombreUsuario)
-    console.log(localStorage.getItem("userName"))
+    nombreUsuario = document.getElementById("user").value;      
+    localStorage.setItem("userName",JSON.stringify(nombreUsuario));
+    console.log(JSON.parse(localStorage.getItem('userName')));
     mostrarPanel();
     }
     
+    let fetchStorageUser   =  JSON.parse(localStorage.getItem('userName'));
+    
 
     
+function saludo(){
+    if (nombreUsuario !==fetchStorageUser)
+    return "por primera vez "+nombreUsuario;
+    else{
+    return "de nuevo "+nombreUsuario
+    }
+}
+
 function mostrarPanel() {
     const opciones = document.getElementById("datos");
 
     opciones.innerHTML =
-    `<h3>Bienvenido ${nombreUsuario}</h3>
+    `<h3>Bienvenido ${saludo()}</h3>
     <form id="formulario-usuario">
         <input type="email" id="email" placeholder="Email">
         <input type="number" id="monto" placeholder="Monto">
@@ -92,7 +101,5 @@ function mostrarPanel() {
             document.getElementById("t2").innerHTML=d4;
             document.getElementById("t3").innerHTML=d5;        
         }
-    }      
-
-
+    }       
 
